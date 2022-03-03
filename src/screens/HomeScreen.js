@@ -1,12 +1,22 @@
-import React, { useState } from "react";
-import { Alert, Button, Image, StyleSheet, Text, TextInput, View } from "react-native";
-import Slider from 'react-native-slide-to-unlock';
+import React, { useEffect, useState } from "react";
+import { Alert, Button, StyleSheet, TextInput, View } from "react-native";
 import { useDispatch } from 'react-redux'
 import { changeName } from '../actions/name';
+import DeviceInfo from 'react-native-device-info';
 
 const HomeScreen = ({ navigation }) => {
   const [name, setName] = useState('');
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    DeviceInfo.isEmulator().then((isEmulator) => {
+      if (isEmulator) {
+        Alert.alert('Attention', 'You are running this app on emulator!');
+      }
+    });
+
+  }, [])
+
   const saveName = () => {
     dispatch(changeName(name));
     navigation.navigate('Profile')
@@ -21,44 +31,6 @@ const HomeScreen = ({ navigation }) => {
         placeholder="Type you Name"
       />
       <Button style={styles.button} title="Save" onPress={saveName} />
-      {/* <Button
-        title="Go to Jane's profile"
-        onPress={() =>
-          navigation.navigate('Profile', { name: 'Jane' })
-        }
-      /> */}
-      {/* <Slider
-        childrenContainer={{ backgroundColor: 'red' }}
-        onEndReached={() => {
-          Alert.alert('Attention', 'onEndReached!');
-        }}
-        containerStyle={{
-          margin: 8,
-          backgroundColor: 'white',
-          borderRadius: 10,
-          overflow: 'hidden',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '95%'
-        }}
-        sliderElement={
-          <Image
-            style={{
-              width: 50,
-              margin: 4,
-              borderRadius: 5,
-              height: 50,
-              backgroundColor: 'red',
-            }}
-            source={{
-              uri:
-                'https://facebook.github.io/react-native/docs/assets/favicon.png',
-            }}
-          />
-        }
-      >
-        <Text>{'SLIDE TO UNLOCK'}</Text>
-      </Slider> */}
     </View>
   );
 };
