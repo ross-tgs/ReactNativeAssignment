@@ -1,5 +1,8 @@
+///@ts-check
+
 import React from 'react';
 import { TouchableOpacity, Text, View } from 'react-native';
+import PropTypes from 'prop-types';
 
 export default function FlatButton({ text, onPress, buttonColor, color }) {
   return (
@@ -23,4 +26,11 @@ export default function FlatButton({ text, onPress, buttonColor, color }) {
       </View>
     </TouchableOpacity>
   );
+}
+
+FlatButton.propTypes = {
+  text: PropTypes.string,
+  onPress: PropTypes.func,
+  buttonColor: PropTypes.string,
+  color: PropTypes.string,
 }

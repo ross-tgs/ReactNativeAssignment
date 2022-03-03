@@ -4,15 +4,15 @@ import { useSelector } from 'react-redux'
 import Slider from 'react-native-slide-to-unlock';
 import FlatButton from "../components/FlatButton";
 
-const ButtonsScreen = ({ navigation }) => {
+const ButtonsScreen = () => {
   const { name } = useSelector(state => state.user)
   return (
     <SafeAreaView>
       <Text style={styles.text}>Hi nice to meet you {name}!!</Text>
       <Text style={styles.text}>Here are some buttons examples.</Text>
       <FlatButton text="Press me" onPress={() => Alert.alert("clicked")} buttonColor={'#fff'} color={'#0000ff'} />
-      <FlatButton text="Press me" onPress={() => Alert.alert("clicked")} buttonColor={'#f01d71'} />
-      <FlatButton text="Press me" onPress={() => Alert.alert("Clicked")} buttonColor={'#0000ff'} />
+      <FlatButton text="Press me" onPress={() => Alert.alert("clicked")} buttonColor={'#f01d71'} color={'#fff'} />
+      <FlatButton text="Press me" onPress={() => Alert.alert("Clicked")} buttonColor={'#0000ff'} color={'#fff'} />
       <Slider
         childrenContainer={{ backgroundColor: 'white' }}
         onEndReached={() => {

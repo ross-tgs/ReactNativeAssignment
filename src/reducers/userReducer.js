@@ -1,3 +1,5 @@
+///@ts-check
+
 import { ADD_NAME } from '../actions/types'
 
 const initialState = {

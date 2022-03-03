@@ -1,3 +1,5 @@
+///@ts-check
+
 import { ADD_NAME } from './types';
 
 export const changeName = (name) => {

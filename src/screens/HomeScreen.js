@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Button, Modal, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Button, Modal, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useDispatch } from 'react-redux'
 import { changeName } from '../actions/name';
 import DeviceInfo from 'react-native-device-info';
+import PropTypes from 'prop-types';
 
 const HomeScreen = ({ navigation }) => {
   const [name, setName] = useState('');
@@ -15,7 +16,6 @@ const HomeScreen = ({ navigation }) => {
         setModalVisible(true);
       }
     });
-
   }, [])
 
   const saveName = () => {
@@ -56,10 +56,14 @@ const HomeScreen = ({ navigation }) => {
         value={name}
         placeholder="Type you Name"
       />
-      <Button style={styles.button} title="Save" onPress={saveName} />
+      <Button style={styles.button} title="Save" disabled={name === ''} onPress={saveName} />
     </View>
   );
 };
+
+HomeScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
+}
 
 const styles = StyleSheet.create({
   input: {

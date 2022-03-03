@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, SafeAreaView, StyleSheet, Text } from "react-native";
 import { useSelector } from 'react-redux'
+import PropTypes from 'prop-types';
 
 const ProfileScreen = ({ navigation }) => {
   const { name } = useSelector(state => state.user)
@@ -11,6 +12,10 @@ const ProfileScreen = ({ navigation }) => {
     </SafeAreaView >
   )
 };
+
+ProfileScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
+}
 
 const styles = StyleSheet.create({
   text: {
